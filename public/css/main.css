@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #845460;
+}
+
+
+/* Botones */
+.btn-primary {
+  color: #fff;
+  background-color: #845460;
+  border-color: #301B3F;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #724551;
+  border-color: #301B3F;
+}
+
+
+/* Sidebar */
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #845460;
+  border-color: #301B3F;
+}

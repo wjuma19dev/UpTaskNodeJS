@@ -1,0 +1,17 @@
+extends layout
+block contenido
+  h1.text-center.mt-3 #{nombrePagina}
+  
+  .row 
+    .col-9.offset-1 
+      if errores
+        each error in errores 
+          .alert.alert-danger(role="alert")
+            | #{error.texto}
+      form.agregar-proyecto(action="/nuevo-proyecto" method="POST")
+        .campo 
+          label(for="nombre") Nombre del proyecto
+          input.form-control(name="nombre") 
+        .campo.enviar 
+          input(type="submit" value="Enviar" class="btn btn-success mt-2")
+    .col-2
