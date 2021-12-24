@@ -2,7 +2,7 @@ extends layout
 block contenido
   h1.text-center.mt-3 #{nombrePagina}
   
-  .row 
+  .row.bg-light.p-4
     .col-9.offset-1 
       if errores
         each error in errores 

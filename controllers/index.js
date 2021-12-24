@@ -28,6 +28,10 @@ exports.nuevoProyectoPost = (req, res) => {
             nombrePagina: 'Nuevo Proyecto',
             errores
         });
+    } else {
+
+      // Insertar en la base datos
+
     }
 
 
