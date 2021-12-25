@@ -3,16 +3,26 @@ const router = express.Router();
 
 const controllers = require('../controllers');
 
+// Express validator
+const { body } = require('express-validator');
+
 module.exports = function() {
 
-    router.get('/', controllers.index);
+  router.get('/', controllers.index);
 
-    router.get('/about', controllers.about);
+  router.get('/nuevo-proyecto', controllers.nuevoProyecto);
 
-    router.get('/nuevo-proyecto', controllers.nuevoProyecto);
+  router.post('/nuevo-proyecto',
+  body('nombre', 'El campo "Nombre del proyecto" no debe de estar vacio, por favor completa el mismo y trata de nuevo!')
+    .not().isEmpty().trim().escape(),
+  controllers.nuevoProyectoPost);
 
-    router.post('/nuevo-proyecto', controllers.nuevoProyectoPost);
+  // Listar proyectos
+  router.get('/proyectos/:url', controllers.proyectoPorUrl);
 
-    return router;
+  // Editar proyecto
+  router.get('/proyecto/editar/:id', controllers.formularioEditar);
+
+  return router;
 
 }

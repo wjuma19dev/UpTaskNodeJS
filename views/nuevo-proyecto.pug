@@ -4,14 +4,21 @@ block contenido
   
   .row.bg-light.p-4
     .col-9.offset-1 
-      if errores
-        each error in errores 
+      if errors
+        each error in errors.errors 
           .alert.alert-danger(role="alert")
-            | #{error.texto}
+            | #{error.msg}
       form.agregar-proyecto(action="/nuevo-proyecto" method="POST")
         .campo 
           label(for="nombre") Nombre del proyecto
-          input.form-control(name="nombre") 
+          input.form-control(name="nombre" autocomplete="off" value=`${ proyecto ? proyecto.nombre : '' }`) 
         .campo.enviar 
-          input(type="submit" value="Enviar" class="btn btn-success mt-2")
+          //- input(type="submit" value="Agregar" class="btn btn-success mt-2")
+          button.btn.btn-success.mt-2(type="submit")
+            if proyecto
+              i.bi.bi-cloud-plus &nbsp;
+              | Actualizar
+            else 
+              i.bi.bi-folder-plus &nbsp;
+              | Agregar
     .col-2

@@ -2,6 +2,9 @@ const express = require('express');
 const routes = require('./routes');
 const path = require('path');
 
+// Helpers con algunas funciones
+const helpers = require('./helpers');
+
 // Crear la conexion a la base de datos
 const db = require('./config/db');
 
@@ -22,6 +25,12 @@ app.use(express.json());
 // Habilitar PUG
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname, './views'));
+
+// Pasar vardump a la aplicacion
+app.use((req, res, next) => {
+  res.locals.vardump = helpers.vardump;
+  next();
+});
 
 // Donde cargar los archivos estaticos
 app.use(express.static(path.resolve(__dirname, 'public')));
