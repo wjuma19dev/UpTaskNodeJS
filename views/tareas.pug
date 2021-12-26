@@ -1,21 +1,23 @@
 extends layout
 block contenido
-  h1.display-6.mt-3 
-    | #{nombrePagina} 
-    small.lead #{proyecto.nombre}
+
+  .row.mt-3
+    .col-12 
+      small.lead #{nombrePagina} 
+      h1.display-6.mb-5 #{proyecto.nombre} 
     
-    //- TODO: Formulario aqui
-    
-    //- TODO: Listado de pendientes 
-    
-    
-    //- TODO: Acciones que se pueden utilizar 
-    .row
-      .col-12
-        .btn-group(role="group" aria-label="Basic mixed styles")
-          a.btn.btn-warning(href=`/proyecto/editar/${proyecto.id}`) 
-            i.bi.bi-pen &nbsp;
-            | Actualizar proyecto
-          a.btn.btn-danger 
-            i.bi.bi-trash &nbsp;
-            | Eliminar proyecto
+  //- TODO: Formulario aqui
+  
+  //- TODO: Listado de pendientes 
+  
+  
+  //- TODO: Acciones que se pueden utilizar 
+  .row
+    .col-12
+      .btn-group(role="group" aria-label="Basic mixed styles")
+        a.btn.btn-warning(href=`/proyecto/editar/${proyecto.id}`) 
+          i.bi.bi-pen &nbsp;
+          | Actualizar proyecto
+        a.btn.btn-danger 
+          i.bi.bi-trash &nbsp;
+          | Eliminar proyecto

@@ -22,6 +22,10 @@ module.exports = function() {
 
   // Editar proyecto
   router.get('/proyecto/editar/:id', controllers.formularioEditar);
+  router.post('/proyecto/editar/:id',
+  body('nombre', 'El campo "Nombre del proyecto" no debe de estar vacio, por favor completa el mismo y trata de nuevo!')
+    .not().isEmpty().trim().escape(),
+  controllers.actualizarProyecto);
 
   return router;
 

@@ -1,0 +1,14 @@
+mixin crearProyecto(proyecto = {})
+  form.agregar-proyecto(action=`${ proyecto.id ? '/proyecto/editar/'+proyecto.id : '/nuevo-proyecto' }` method="POST")
+    .campo 
+      label(for="nombre") Nombre del proyecto
+      input.form-control(name="nombre" autocomplete="off" value=proyecto.nombre) 
+    .campo.enviar 
+      //- input(type="submit" value="Agregar" class="btn btn-success mt-2")
+      button.btn.btn-success.mt-2(type="submit")
+        if proyecto.id
+          i.bi.bi-cloud-plus &nbsp;
+          | Actualizar
+        else 
+          i.bi.bi-folder-plus &nbsp;
+          | Agregar
