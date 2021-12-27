@@ -18,6 +18,6 @@ block contenido
         a.btn.btn-warning(href=`/proyecto/editar/${proyecto.id}`) 
           i.bi.bi-pen &nbsp;
           | Actualizar proyecto
-        a.btn.btn-danger 
+        a.btn.btn-danger(id="eliminar-proyecto" data-proyecto-url=proyecto.url) 
           i.bi.bi-trash &nbsp;
           | Eliminar proyecto
