@@ -1,0 +1,32 @@
+li {
+
+  span.timestamp {
+    display: block;
+    font-size: .8rem;
+  }
+
+  .line-through {
+    text-decoration: line-through;
+    color: #dc3545;
+  }
+
+  span.badge {
+    width: 70px;
+    display: flex;
+    justify-content: space-around;
+
+    .bi-check-circle {
+      color: #212529;
+    }
+    
+    .bi-check-circle:hover {
+      cursor: pointer;
+    }
+    
+    .completo {
+      color: #dc3545 !important;
+    }
+
+  }
+  
+}

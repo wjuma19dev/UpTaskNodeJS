@@ -10,8 +10,8 @@ const Proyectos = db.define('proyectos', {
     primaryKey: true,
     autoIncrement: true
   },
-  nombre: DataTypes.STRING,
-  url: DataTypes.STRING
+  nombre: DataTypes.STRING(100),
+  url: DataTypes.STRING(100)
 }, {
   hooks: {
     beforeCreate(proyecto) {

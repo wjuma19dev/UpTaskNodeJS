@@ -2,7 +2,7 @@ mixin crearProyecto(proyecto = {})
   form.agregar-proyecto(action=`${ proyecto.id ? '/proyecto/editar/'+proyecto.id : '/nuevo-proyecto' }` method="POST")
     .campo 
       label(for="nombre") Nombre del proyecto
-      input.form-control(name="nombre" autocomplete="off" value=proyecto.nombre) 
+      input.form-control(name="nombre" autocomplete="off" placeholder="Dale un nombre a tu proyecto, Ej: Navegar por internet!" value=proyecto.nombre) 
     .campo.enviar 
       //- input(type="submit" value="Agregar" class="btn btn-success mt-2")
       button.btn.btn-success.mt-2(type="submit")

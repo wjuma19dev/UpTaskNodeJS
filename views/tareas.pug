@@ -4,12 +4,44 @@ block contenido
   .row.mt-3
     .col-12 
       small.lead #{nombrePagina} 
-      h1.display-6.mb-5 #{proyecto.nombre} 
+      h1.display-6.mb-4 #{proyecto.nombre} 
     
   //- TODO: Formulario aqui
-  
+  form.row.alert.alert-dark.mb-3(action=`/proyectos/${proyecto.url}` method="POST")
+    .col-10.mb-3 
+      label(for="tarea") Tarea:
+      input.form-control(type="text" name="tarea" placeholder="Ingresa la acción de deseas realizar. Ej: Descargar una imagen!") 
+    .col-10
+      button.btn.btn-success(type="submit")
+        i.bi.bi-file-earmark-plus &nbsp;
+        | Agregar
+
   //- TODO: Listado de pendientes 
+  //- pre= vardump(tareas)
+  if tareas.length 
+    .row.mb-3
+      .col-10 
+        ol.list-group
+          each tarea of tareas
+            li.list-group-item.d-flex.justify-content-between.align-items-start#tarea(data-tarea=tarea.id)
+              .ms-2.me-auto
+                span.timestamp.text-muted= new Date(tarea.createdAt).toDateString() 
+                span#tarea-texto(class=tarea.estado ? 'line-through' : '')
+                  | #{tarea.tarea}
+              span.badge
+                if tarea.estado
+                  i.bi.bi-check-circle.completo(style="font-size: 18px;")
+                else 
+                  i.bi.bi-check-circle(style="font-size: 18px;")
+                i.bi.bi-trash.text-dark(style="font-size: 18px;")
   
+  //- Si no hay tareas, mostramos un mensaje
+  else 
+    .row 
+      .col-10
+        .alert.alert-primary(role="alert")
+          | No hay tareas en este proyecto
+
   
   //- TODO: Acciones que se pueden utilizar 
   .row

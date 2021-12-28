@@ -8,8 +8,6 @@ if(btnEliminar) {
   btnEliminar.addEventListener('click', e => {
 
     const proyectoUrl = e.target.dataset.proyectoUrl;
-
-    console.log(proyectoUrl);
     
     Swal.fire({
       title: 'Deseas eliminar este proyecto?',
@@ -24,17 +22,34 @@ if(btnEliminar) {
       if (result.isConfirmed) {
 
         // Enviar peticion a axios
+        const url = `${location.origin}/proyectos/${proyectoUrl}`;
+        axios.delete(url, { params: proyectoUrl })
+          .then(respuesta => {
 
-        Swal.fire(
-          'Proyecto eliminado!',
-          'El proyecto se ha eliminado.',
-          'success'
-        );
-  
-        // Redireccionar al inicio
-        setTimeout(() => {
-          window.location.href = '/';
-        }, 3000)
+            console.log(respuesta);
+
+            Swal.fire(
+              'Proyecto eliminado!',
+              'El proyecto se ha eliminado.',
+              'success'
+            );
+      
+            // Redireccionar al inicio
+            setTimeout(() => {
+              window.location.href = '/';
+            }, 3000);
+
+          })
+          .catch(error => {
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Hubo un error!',
+              text: 'No se pudo eliminar el proyecto'
+            });
+
+          });
+        
       }
     })
   

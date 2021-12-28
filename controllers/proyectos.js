@@ -1,4 +1,6 @@
 const Proyecto = require('../model/Proyectos');
+const Tareas = require('../model/Tareas');
+
 const { validationResult } = require('express-validator');
 
 
@@ -11,17 +13,29 @@ exports.index = async (req, res) => {
 }
 
 exports.proyectoPorUrl = async (req, res, next) => {
+
   const proyectosPromise = Proyecto.findAll();
   const proyectoPromise = Proyecto.findOne({
     where: { url: req.params.url }
   });
+
   const [proyectos, proyecto] = await Promise.all([proyectosPromise, proyectoPromise]);
-  // Si no hay proyectos con la url
-  if(!proyecto) return next();
+
+  if(!proyecto) {
+    return next();
+  };
+
+  // Listar todas las tareas
+  const tareas = await Tareas.findAll({
+    where: { proyectoId: proyecto.id },
+    include: {model: Proyecto}
+  });
+
   res.render('tareas', {
     nombrePagina: 'Tareas del proyecto',
     proyectos,
-    proyecto
+    proyecto,
+    tareas
   });
 
 }
@@ -76,4 +90,13 @@ exports.actualizarProyecto = async (req, res) => {
   const { nombre } = req.body;
   await Proyecto.update({ nombre: nombre },{ where: {id: req.params.id }});
   res.redirect('/');
+}
+
+exports.eliminarProyecto = async (req, res, next) => {
+  const { proyectoUrl } = req.params;
+  const respuesta = await Proyecto.destroy({ where: { url: proyectoUrl } });
+  if(!respuesta) {
+    return next();
+  }
+  res.send('Proyecto eliminado correctamente');
 }

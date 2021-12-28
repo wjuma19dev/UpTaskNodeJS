@@ -1,31 +1,41 @@
 const express = require('express');
 const router = express.Router();
 
-const controllers = require('../controllers');
+const proyectosController = require('../controllers/proyectos');
+const tareasController = require('../controllers/tareas');
 
 // Express validator
 const { body } = require('express-validator');
 
 module.exports = function() {
 
-  router.get('/', controllers.index);
+  router.get('/', proyectosController.index);
 
-  router.get('/nuevo-proyecto', controllers.nuevoProyecto);
+  router.get('/nuevo-proyecto', proyectosController.nuevoProyecto);
 
   router.post('/nuevo-proyecto',
   body('nombre', 'El campo "Nombre del proyecto" no debe de estar vacio, por favor completa el mismo y trata de nuevo!')
     .not().isEmpty().trim().escape(),
-  controllers.nuevoProyectoPost);
+    proyectosController.nuevoProyectoPost);
 
   // Listar proyectos
-  router.get('/proyectos/:url', controllers.proyectoPorUrl);
+  router.get('/proyectos/:url', proyectosController.proyectoPorUrl);
 
   // Editar proyecto
-  router.get('/proyecto/editar/:id', controllers.formularioEditar);
+  router.get('/proyecto/editar/:id', proyectosController.formularioEditar);
   router.post('/proyecto/editar/:id',
   body('nombre', 'El campo "Nombre del proyecto" no debe de estar vacio, por favor completa el mismo y trata de nuevo!')
     .not().isEmpty().trim().escape(),
-  controllers.actualizarProyecto);
+    proyectosController.actualizarProyecto);
+
+  // Eliminar proyecto
+  router.delete('/proyectos/:proyectoUrl', proyectosController.eliminarProyecto);
+
+  // Tareas
+  router.post('/proyectos/:proyectoUrl', tareasController.agregarTarea);
+
+  // Actualizar tarea
+  router.patch('/tarea/:id', tareasController.cambiarEstadoTarea);
 
   return router;
 

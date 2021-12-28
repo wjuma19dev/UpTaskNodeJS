@@ -10,6 +10,7 @@ const db = require('./config/db');
 
 // Importar los modelos para la creacion en automatico en caso de que no existan las tablas
 require('./model/Proyectos');
+require('./model/tareas');
 
 db.sync()
   .then(() => console.log('Conectado al servidor'))
