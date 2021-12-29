@@ -16,7 +16,7 @@ li span.timestamp {
 }
 li .line-through {
   text-decoration: line-through;
-  color: #dc3545;
+  color: #198754;
 }
 li span.badge {
   width: 70px;
@@ -30,7 +30,13 @@ li span.badge .bi-check-circle:hover {
   cursor: pointer;
 }
 li span.badge .completo {
+  color: #198754 !important;
+}
+li span.badge .bi-trash {
   color: #dc3545 !important;
+}
+li span.badge .bi-trash:hover {
+  cursor: pointer;
 }
 
 .logo {

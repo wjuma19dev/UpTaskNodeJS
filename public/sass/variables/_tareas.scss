@@ -7,7 +7,7 @@ li {
 
   .line-through {
     text-decoration: line-through;
-    color: #dc3545;
+    color: #198754;
   }
 
   span.badge {
@@ -24,7 +24,14 @@ li {
     }
     
     .completo {
+      color: #198754 !important;
+    }
+
+    .bi-trash {
       color: #dc3545 !important;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
   }
