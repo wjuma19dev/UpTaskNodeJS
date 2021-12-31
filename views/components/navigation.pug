@@ -1,14 +1,26 @@
+.top
+  .toolbar
+    .container
+      .row
+        .col-8
+          span #{new Date()}
+        .col-4.options
+          a(href="#") 
+            i.bi.bi-box-arrow-right &nbsp;
+            | Logout
 nav(class="navbar navbar-expand-lg navbar-dark bg-primary")
   .container
     div.logo 
       div.logo__box
         span BT
-    a.navbar-brand(href="/") Banktask
+    a.navbar-brand(href="/") 
+      | Banktask &nbsp;
+      small v1.0.0
     div(class="collapse navbar-collapse")
       ul(class="navbar-nav me-auto mb-2 mb-lg-0")
-        li.nav-item 
-          a.nav-link(href="/") Inicio
-      span.navbar-text
-        a(href="#").btn.btn-outline-primary 
-          i.bi.bi-box-arrow-right &nbsp;
-          | Cerrar Session
+        //- li.nav-item 
+        //-   a.nav-link(href="/") Inicio
+      //- span.navbar-text
+      //-   a(href="#").btn.btn-secondary 
+      //-     i.bi.bi-box-arrow-right &nbsp;
+      //-     | Cerrar Session

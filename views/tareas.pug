@@ -7,17 +7,19 @@ block contenido
       h1.display-6.mb-4 #{proyecto.nombre} 
     
   //- TODO: Formulario aqui
-  form.row.alert.alert-dark.mb-3(action=`/proyectos/${proyecto.url}` method="POST")
-    .col-10.mb-3 
-      label(for="tarea") Tarea:
-      input.form-control(type="text" name="tarea" placeholder="Ingresa la acción de deseas realizar. Ej: Descargar una imagen!") 
-    .col-10
-      button.btn.btn-success(type="submit")
-        i.bi.bi-file-earmark-plus &nbsp;
-        | Agregar
+  .row.mb-3
+    form(action=`/proyectos/${proyecto.url}` method="POST").alert
+      .row
+        .col-10.mb-3 
+          label(for="tarea") Tarea:
+          input.form-control(type="text" name="tarea" placeholder="Ingresa la acción de deseas realizar. Ej: Descargar una imagen!") 
+        .col-10
+          button.btn.btn-success(type="submit")
+            i.bi.bi-file-earmark-plus &nbsp;
+            | Agregar
+
 
   //- TODO: Listado de pendientes 
-  //- pre= vardump(tareas)
   if tareas.length 
     .row.mb-3
       .col-10 

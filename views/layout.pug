@@ -5,22 +5,36 @@ html(lang="en")
       meta(http-equiv="X-UA-Compatible", content="IE=edge")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
       link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet")
+      link(href='/sass/progress.css' rel="stylesheet")
       link(href='/dist/bundle.css' rel="stylesheet")
       title #{nombrePagina}  
   body 
 
     include components/navigation
+    include components/avance
+
     .container
       .row 
-        .col-md-4.mt-5
-          a.btn.btn-primary(href="/nuevo-proyecto") 
-            |   Nuevo Proyecto &nbsp;
-            i.bi.bi-clipboard-plus
-          h3.mt-3 Proyectos
-          .list-group
-            if (proyectos.length)
-              each proyecto of proyectos
-                a(href=`/proyectos/${proyecto.url}` class="list-group-item list-group-item-action")= proyecto.nombre
+        if progreso
+          .col-md-4.mt-3
+            .backbutton.mb-3
+              a.btn.btn-link(href='/' style="text-decoration: none;")
+                i.bi.bi-arrow-left
+                | Regresar
+            +barraDeProgreso()
+
+        if !progreso
+          .col-md-4.mt-3
+            a.btn.btn-primary(href="/nuevo-proyecto") 
+              |   Nuevo Proyecto &nbsp;
+              i.bi.bi-clipboard-plus
+            h3.mt-3 Proyectos
+            .list-group
+              if (proyectos.length)
+                each proyecto of proyectos
+                  a(href=`/proyectos/${proyecto.url}` class="list-group-item list-group-item-action")= proyecto.nombre
+
+
         .col-md-8 
           block contenido
     

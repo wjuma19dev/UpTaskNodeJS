@@ -8,7 +8,8 @@ exports.index = async (req, res) => {
   const proyectos = await Proyecto.findAll();
   res.render('index', {
     nombrePagina: 'Proyectos',
-    proyectos
+    proyectos,
+    progreso: false
   });
 }
 
@@ -35,7 +36,8 @@ exports.proyectoPorUrl = async (req, res, next) => {
     nombrePagina: 'Tareas del proyecto',
     proyectos,
     proyecto,
-    tareas
+    tareas,
+    progreso: true
   });
 
 }
@@ -50,7 +52,8 @@ exports.formularioEditar = async (req, res) => {
   res.render('nuevo-proyecto', {
       nombrePagina: 'Editar Proyecto',
       proyectos,
-      proyecto
+      proyecto,
+      progreso: false
   });
 }
 
@@ -58,7 +61,8 @@ exports.nuevoProyecto = async (req, res) => {
   const proyectos = await Proyecto.findAll();
   res.render('nuevo-proyecto', {
       nombrePagina: 'Nuevo Proyecto',
-      proyectos
+      proyectos,
+      progreso: false
   });
 }
 
@@ -69,7 +73,8 @@ exports.nuevoProyectoPost = async (req, res) => {
     return res.render('nuevo-proyecto', {
         nombrePagina: 'Nuevo Proyecto',
         proyectos,
-        errors
+        errors,
+        progreso: false
     });
   }
   const { nombre } = req.body;
@@ -84,7 +89,8 @@ exports.actualizarProyecto = async (req, res) => {
     return res.render('nuevo-proyecto', {
         nombrePagina: 'Editar Proyecto',
         proyectos,
-        errors
+        errors,
+        progreso: false
     });
   }
   const { nombre } = req.body;

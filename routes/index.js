@@ -3,6 +3,7 @@ const router = express.Router();
 
 const proyectosController = require('../controllers/proyectos');
 const tareasController = require('../controllers/tareas');
+const authController = require('../controllers/auth');
 
 // Express validator
 const { body } = require('express-validator');
@@ -39,6 +40,9 @@ module.exports = function() {
 
   // Eliminar una tarea
   router.delete('/tarea/:tareaId', tareasController.eliminarTarea);
+
+  // Registro de usuarios
+  router.get('/auth/signup', authController.registroDeUsuario);
 
   return router;
 
