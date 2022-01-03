@@ -1,0 +1,21 @@
+#signup {
+  
+  background-color: #EA5C2B;
+  height: 100vh;
+  max-width: 100%;
+}
+
+.crearCuenta, .iniciarSesion {
+  background-color: #EA5C2B;
+  height: 100vh;
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+
+  .crearCuenta__caja, .iniciarSesion__caja {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 3rem;
+    position: absolute;
+  }
+}

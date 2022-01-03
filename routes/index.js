@@ -42,7 +42,11 @@ module.exports = function() {
   router.delete('/tarea/:tareaId', tareasController.eliminarTarea);
 
   // Registro de usuarios
-  router.get('/auth/signup', authController.registroDeUsuario);
+  router.get('/crear-cuenta', authController.registroDeUsuario);
+  router.post('/crear-cuenta', authController.postRegistroDeUsuario);
+
+  // Inicio de session
+  router.get('/iniciar-sesion', authController.iniciarSession);
 
   return router;
 

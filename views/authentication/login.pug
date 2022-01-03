@@ -9,41 +9,50 @@ html(lang="es")
 		link(href='/dist/bundle.css' rel="stylesheet")
 		title= nombrePagina
 	body
-		.crearCuenta
+		.iniciarSesion
 			.container
 				.row
-					.col-md-4.offset-3.mt-5.crearCuenta__caja
-
-
-						if locals.mensajes 
-							each categoria in Object.keys(locals.mensajes)
-								each error in mensajes[categoria]
-									div(class=`alert alert-${categoria === 'error' ? 'danger' : ''} d-flex align-items-center`)
-										i.bi.bi-exclamation-triangle-fill(style="margin-right: 15px;")
-										p.mb-0= error
-
-						h1.mb-3
+					.col-md-4.offset-md-3.mt-5.iniciarSesion__caja
+						h1
 							i.fa.fa-lock(aria-hidden='true')
 							|  Banktask 
-							small.lead #{nombrePagina} 
-						form(action="/crear-cuenta" method="POST")
-							.input-group.mb-3
+							small.lead #{nombrePagina}
+						br
+						//- br
+						form
+							.input-group
 								.input-group-prepend
 									span.input-group-text
 										i.bi.bi-person-circle.icon
 								input.form-control(type='text' name='email' placeholder='Ingresa tu correo electronico')
-							.input-group.mb-3
+							br
+							.input-group
 								.input-group-prepend
 									span.input-group-text
 										i.bi.bi-key.icon
 								input.form-control(type='password' name='password' placeholder='Ingresa una contrasena')
-							.input-group.mb-3
-								button.btn.btn-success(type='submit') Crear cuenta
-						.footer.mt-5
+							br
+							//- .checkbox
+							//- 	label
+							//- 		input(type='checkbox' value='')
+							//- 		| &nbsp;Remember me
+							//- br
+							button.btn.btn-success(type='submit')
+								span.glyphicon.glyphicon-off
+								|  Crear cuenta
+						//- button.btn.btn-info(type='submit')
+						//- 	span.glyphicon.glyphicon-remove
+						//- 	| Login with Facebook
+						br
+						br
+						//- center
+						//- 	div(style='border:1px solid black;height:1px;width:300px;')
+						//- br
+						.footer
 							p
-								| Ya tienes una cuenta! 
-								a(href='/iniciar-sesion') Iniciar sesion
-							//- p
-							//- 	| Forgot 
-							//- 	a(href='#') Password?
+								| No tienes una cuenta! 
+								a(href='/crear-cuenta') Registrate
+							p
+								| Olvidaste tu 
+								a(href='#') contraseña?
 		script(src="/dist/bundle.js") 

@@ -1,6 +1,8 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 // Helpers con algunas funciones
 const helpers = require('./helpers');
@@ -11,6 +13,7 @@ const db = require('./config/db');
 // Importar los modelos para la creacion en automatico en caso de que no existan las tablas
 require('./model/Proyectos');
 require('./model/tareas');
+require('./model/Usuarios');
 
 db.sync()
   .then(() => console.log('Conectado al servidor'))
@@ -27,9 +30,21 @@ app.use(express.json());
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname, './views'));
 
+// Use express session before flash
+const sess = {
+  secret: 'uptasknodejs',
+  resave: false,
+  saveUninitialized: false
+}
+app.use(session(sess));
+
+// Flash messages
+app.use(flash());
+
 // Pasar vardump a la aplicacion
 app.use((req, res, next) => {
   res.locals.vardump = helpers.vardump;
+  res.locals.mensajes = req.flash();
   next();
 });
 
